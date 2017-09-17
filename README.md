@@ -8,5 +8,5 @@ File is in .csv file format.
 In wholesale mode, 3rd column has options,
 In retail mode, 5th column has options (size and color).
 
-The output files("out-file-retail.csv" or "out-file-wholesale.csv")
+The output files("retail-output.csv" or "wholesale-output.csv")
 have new size and color columns.
