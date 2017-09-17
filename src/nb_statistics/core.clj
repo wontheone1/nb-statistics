@@ -15,10 +15,9 @@
       (recur (apply str (rest n)))
       n)))
 
-(defn -main
-  [& args]
-  (let [file-name (first args)
-        rows (vec (csv/read-csv (slurp file-name)))
+(defn run-retail-mode!
+  [file-name]
+  (let [rows (vec (csv/read-csv (slurp file-name)))
         first-row (first rows)
         contents-rows (rest rows)
         option-columns (map (fn [vec] (vec 4)) contents-rows)
@@ -51,3 +50,17 @@
         (csv/write-csv writer
                        (cons first-row-with-size-and-color
                              contents-rows-with-size-and-color))))))
+
+(defn run-wholesale-mode! [filename]
+  (println (str filename " not implemented")))
+
+(defn -main
+  [& args]
+  (let [program-mode (first args)
+        file-name (second args)]
+    (case program-mode
+      ("wholesale" "wh") (run-wholesale-mode! file-name)
+      ("retail" "re") (run-retail-mode! file-name)
+      (println (str program-mode " is not supported." \newline
+                    "Try, 'wholesale', 'wh' for wholesale mode," \newline
+                    "or 'retail', 're' for retail mode.")))))
